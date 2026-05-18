@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Gulam Muhaydin</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ==========================================
+       RIGHT-TO-LEFT PREMIUM TOAST POPUP STYLING
+       ========================================== */
+    .toast-container {
+      position: fixed;
+      top: 30px;
+      right: -450px; /* Suruati sthiti ma screen ni bahar right side rehse */
+      background: rgba(13, 19, 38, 0.95);
+      border-left: 5px solid #8b5cf6; /* Purple indicator bar */
+      padding: 20px 25px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      max-width: 400px;
+      width: 90%;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.15);
+      backdrop-filter: blur(8px);
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth sliding effect */
+    }
+    
+    /* Screen par avva mate ni class */
+    .toast-container.show {
+      right: 30px; /* Right thi side ma 30px upar avi jase */
+    }
+
+    .toast-icon {
+      font-size: 30px;
+      flex-shrink: 0;
+    }
+    
+    /* Success Green Indicator */
+    .toast-container.success {
+      border-left-color: #10b981;
+    }
+    .toast-container.success .toast-icon {
+      color: #10b981;
+      filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
+    }
+
+    /* Error Red Indicator */
+    .toast-container.error {
+      border-left-color: #ef4444;
+    }
+    .toast-container.error .toast-icon {
+      color: #ef4444;
+      filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.4));
+    }
+
+    .toast-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toast-content h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .toast-content p {
+      color: #9ca3af;
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Progress bar loader overlay (Optional: look ne vadhare premium banavva) */
+    .toast-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 100%;
+      background: rgba(25, 33, 56, 0.5);
+    }
+    .toast-progress::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: #8b5cf6;
+      animation: progress-anim 3s linear forwards; /* 3 seconds countdown line */
+    }
+    .toast-container.success .toast-progress::after { background: #10b981; }
+    .toast-container.error .toast-progress::after { background: #ef4444; }
+
+    @keyframes progress-anim {
+      to { width: 0%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1 class="logo-text" onclick="window.location.href='index.html'">
+        <span class="letter-g">G</span><span class="letter-m">M</span>
+      </h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" class="active-link">Contact</a></li>
+      </ul>
+      <button><a href="./contact.html">Hire Me</a></button>
+    </nav>
+  </header>
+
+  <section class="contact-page">
+    <div class="contact-container">
+      
+      <div class="contact-left">
+        <div class="contact-img-box">
+          <img src="./main 2.png" alt="Gulam Muhaydin">
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <span class="contact-badge">GET IN TOUCH</span>
+        <h2>Let's Connect <span>Together</span></h2>
+        <p class="contact-subtitle">
+          Have a project in mind or looking to hire a software engineer? Drop a message below or reach out via socials.
+        </p>
+
+        <div class="contact-card">
+          <form class="contact-form" id="my-form" action="https://formspree.io/f/xwvzkapg" method="POST">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project details..." required></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+
+        <div class="contact-socials">
+          <a href="#" class="social-icon-link"><i class="fab fa-github"></i> GitHub</a>
+          <a href="#" class="social-icon-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="#" class="social-icon-link"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+
+      </div> 
+    </div> 
+  </section>
+
+  <div class="toast-container" id="toast-popup">
+    <i class="fas fa-check-circle toast-icon" id="toast-icon"></i>
+    <div class="toast-content">
+      <h4 id="toast-title">Thank You!</h4>
+      <p id="toast-message">Your message has been sent successfully.</p>
+    </div>
+    <div class="toast-progress"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("my-form");
+    const toast = document.getElementById("toast-popup");
+    const toastIcon = document.getElementById("toast-icon");
+    const toastTitle = document.getElementById("toast-title");
+    const toastMsg = document.getElementById("toast-message");
+    const btn = document.getElementById("submit-btn");
+
+    async function handleSubmit(event) {
+      event.preventDefault();
+      
+      // Instantly show sending status on button
+      btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+      btn.disabled = true;
+
+      const data = new FormData(event.target);
+      
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          // Success Response: Show Premium Toast
+          showToast('success', 'Thank You!', 'Message sent successfully. I will reply soon!');
+          form.reset();
+        } else {
+          // Formspree Config Error Response
+          showToast('error', 'Submission Failed', 'Formspree Setup Error. Please check Form ID.');
+        }
+      }).catch(error => {
+        // Network Failure Response
+        showToast('error', 'Network Error', 'Please check your internet connection and try again.');
+      }).finally(() => {
+        // Reset button state instantly
+        btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+        btn.disabled = false;
+      });
+    }
+
+    form.addEventListener("submit", handleSubmit);
+
+    // Dynamic Function to Slide-In and Auto-Hide Toast
+    function showToast(type, title, message) {
+      // Clear previous type classes
+      toast.classList.remove('success', 'error', 'show');
+      
+      // Set values dynamically
+      toastTitle.innerText = title;
+      toastMsg.innerText = message;
+      
+      if (type === 'success') {
+        toast.classList.add('success');
+        toastIcon.className = "fas fa-check-circle toast-icon";
+      } else {
+        toast.classList.add('error');
+        toastIcon.className = "fas fa-exclamation-circle toast-icon";
+      }
+      
+      // Force element repaint to restart the bottom progress bar animation
+      const progressBar = toast.querySelector('.toast-progress');
+      progressBar.style.animation = 'none';
+      progressBar.offsetHeight; /* trigger reflow */
+      progressBar.style.animation = null;
+
+      // Slide-In Toast from right side
+      toast.classList.add("show");
+
+      // Auto Hide after exactly 3000ms (3 seconds)
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>

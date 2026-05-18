@@ -4,12 +4,337 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Me | Gulam Muhaydin</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background: #050816;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================
+       NAVBAR
+    ========================================== */
+
+    header{
+      width: 100%;
+      padding: 20px 8%;
+      background: #050816;
+    }
+
+    nav{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-text{
+      font-size: 34px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .letter-g{
+      color: white;
+    }
+
+    .letter-m{
+      color: #8b5cf6;
+    }
+
+    nav ul{
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav ul li a{
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover{
+      color: #8b5cf6;
+    }
+
+    .active-link{
+      color: #8b5cf6;
+      font-weight: bold;
+    }
+
+    button{
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      background: #8b5cf6;
+      cursor: pointer;
+    }
+
+    button a{
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* ==========================================
+       ABOUT SECTION
+    ========================================== */
+
+    .about-page{
+      width: 100%;
+      min-height: 100vh;
+      padding: 60px 8%;
+    }
+
+    .about-container{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 80px;
+    }
+
+    /* ==========================================
+       IMAGE SECTION
+    ========================================== */
+
+    .about-left{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .about-img-box{
+      width: 380px;
+      max-width: 100%;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .about-img-box img{
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+    }
+
+    .about-img-box::after{
+ content: "";
+    position: absolute;
+    bottom: -10px; 
+    left: 0;
+    width: 100%;
+    height: 180px; 
+
+    background: linear-gradient(
+        to top,
+        #050816 0%,
+        rgba(5, 8, 22, 0.8) 30%,
+        rgba(5, 8, 22, 0.4) 60%,
+        transparent 100%
+    );
+
+    z-index: 2; 
+    pointer-events: none;
+}
+    /* ==========================================
+       TEXT SECTION
+    ========================================== */
+
+    .about-right{
+      flex: 1.3;
+    }
+
+    .tag{
+      color: #8b5cf6;
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    .about-right h2{
+      font-size: 52px;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .about-right h2 span{
+      color: #8b5cf6;
+    }
+
+    .about-desc{
+      color: #bdbdbd;
+      line-height: 1.9;
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    /* ==========================================
+       INFO GRID
+    ========================================== */
+
+    .info-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 35px;
+    }
+
+    .info-item{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .info-title{
+      color: #8b5cf6;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .info-value{
+      color: white;
+      font-size: 16px;
+    }
+
+    /* ==========================================
+       TABLET RESPONSIVE
+    ========================================== */
+
+    @media (max-width: 992px){
+
+
+      .about-container{
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 40px;
+      }
+
+      /* IMAGE ALWAYS TOP */
+      .about-left{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        order: 1;
+      }
+
+      .about-img-box{
+        width: 280px;
+      }
+
+      /* TEXT BELOW IMAGE */
+      .about-right{
+        width: 100%;
+        text-align: center;
+        order: 2;
+      }
+
+      .about-right h2{
+        font-size: 40px;
+      }
+
+      .about-desc{
+        width: 100%;
+      }
+
+      .info-grid{
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 992px){
+
+  nav{
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  nav ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  nav ul li a{
+    font-size: 15px;
+  }
+
+  button{
+    margin-top: 5px;
+  }
+}
+    
+
+    /* ==========================================
+       MOBILE RESPONSIVE
+    ========================================== */
+
+    @media (max-width: 576px){
+
+      .about-page{
+        padding: 40px 20px;
+      }
+
+      .about-img-box{
+        width: 230px;
+      }
+
+      .about-right h2{
+        font-size: 32px;
+      }
+
+      .about-desc{
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .info-grid{
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      button{
+        display: none;
+      }
+    }
+
+    @media (max-width: 576px){
+
+  nav ul{
+    gap: 12px;
+  }
+
+  nav ul li a{
+    font-size: 14px;
+  }
+
+  button{
+    display: block;
+  }
+}
+
+  </style>
+
 </head>
+
 <body>
 
   <header>
     <nav>
+
       <h1 class="logo-text" onclick="window.location.href='index.html'">
         <span class="letter-g">G</span><span class="letter-m">M</span>
       </h1>
@@ -18,54 +343,79 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html" class="active-link">About</a></li>
         <li><a href="skills.html">Skills</a></li>
-        <li><a href="./projects.html">Projects</a></li>
-        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
 
-      <button><a href="./contact.html">Hire Me</a></button>
+      <button>
+        <a href="contact.html">Hire Me</a>
+      </button>
+
     </nav>
   </header>
 
+  <!-- ABOUT SECTION -->
+
   <section class="about-page">
+
     <div class="about-container">
-      
+
+      <!-- IMAGE -->
+
       <div class="about-left">
+
         <div class="about-img-box">
           <img src="./main 2.png" alt="Gulam Muhaydin">
         </div>
+
       </div>
 
+      <!-- TEXT -->
+
       <div class="about-right">
+
         <p class="tag">💡 My Story</p>
-        <h2>About <span>Me</span></h2>
+
+        <h2>
+          About <span>Me</span>
+        </h2>
+
         <p class="about-desc">
-          Hello! I'm a passionate Frontend Developer and Python Enthusiast who loves turning complex problems into beautiful, responsive, and user-friendly digital solutions. My journey into coding started with a curiosity about how things work on the web, which quickly turned into a dedication to creating seamless user experiences.
+          Hello! I'm a passionate Frontend Developer and Python Enthusiast who loves turning complex problems into beautiful, responsive, and user-friendly digital solutions.
         </p>
+
         <p class="about-desc">
-          I focus on writing clean, efficient, and maintainable code while keeping an eye on modern design trends. Whether it's crafting interactive layouts with JavaScript or exploring logic with Python, I'm always eager to learn and adapt to new technologies.
+          I focus on writing clean, efficient, and maintainable code while keeping an eye on modern design trends.
         </p>
 
         <div class="info-grid">
+
           <div class="info-item">
             <span class="info-title">Location:</span>
             <span class="info-value">Pakistan</span>
           </div>
+
           <div class="info-item">
             <span class="info-title">Email:</span>
-            <span class="info-value">your.email@example.com</span>
+            <span class="info-value">gulammuhaydin698@gmail.com</span>
           </div>
+
           <div class="info-item">
             <span class="info-title">Education:</span>
             <span class="info-value">Computer Science / IT</span>
           </div>
+
           <div class="info-item">
             <span class="info-title">Languages:</span>
             <span class="info-value">English, Urdu</span>
           </div>
+
         </div>
+
       </div>
 
     </div>
+
   </section>
 
 </body>

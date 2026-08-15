@@ -7,6 +7,10 @@
 
   <style>
 
+    /* ==========================================
+       GLOBAL RESET
+    ========================================== */
+
     *{
       margin: 0;
       padding: 0;
@@ -14,11 +18,113 @@
       font-family: Arial, sans-serif;
     }
 
+    html{
+      scroll-behavior: smooth;
+    }
+
     body{
       background: #050816;
       color: white;
       overflow-x: hidden;
     }
+
+
+    /* ==========================================
+       ANIMATION KEYFRAMES
+    ========================================== */
+
+    @keyframes fadeUp{
+      from{
+        opacity: 0;
+        transform: translateY(35px);
+      }
+
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeLeft{
+      from{
+        opacity: 0;
+        transform: translateX(-45px);
+      }
+
+      to{
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeRight{
+      from{
+        opacity: 0;
+        transform: translateX(45px);
+      }
+
+      to{
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn{
+      from{
+        opacity: 0;
+        transform: scale(0.88);
+      }
+
+      to{
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes softFloat{
+      0%,
+      100%{
+        transform: translateY(0);
+      }
+
+      50%{
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes glowPulse{
+      0%,
+      100%{
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+      }
+
+      50%{
+        box-shadow: 0 0 40px rgba(139, 92, 246, 0.30);
+      }
+    }
+
+    @keyframes underlineReveal{
+      from{
+        width: 0;
+        opacity: 0;
+      }
+
+      to{
+        width: 70px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes shimmer{
+      0%{
+        background-position: -200% center;
+      }
+
+      100%{
+        background-position: 200% center;
+      }
+    }
+
 
     /* ==========================================
        NAVBAR
@@ -28,6 +134,12 @@
       width: 100%;
       padding: 20px 8%;
       background: #050816;
+
+      animation:
+        fadeUp
+        0.8s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
     }
 
     nav{
@@ -36,10 +148,28 @@
       align-items: center;
     }
 
+
+    /* ==========================================
+       LOGO
+    ========================================== */
+
     .logo-text{
       font-size: 34px;
       cursor: pointer;
       font-weight: bold;
+      user-select: none;
+      position: relative;
+
+      animation:
+        fadeLeft
+        0.8s
+        0.15s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
+
+      transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
     }
 
     .letter-g{
@@ -48,7 +178,22 @@
 
     .letter-m{
       color: #8b5cf6;
+      filter: drop-shadow(
+        0 0 10px rgba(139, 92, 246, 0.50)
+      );
     }
+
+    .logo-text:hover{
+      transform: scale(1.06);
+      filter: drop-shadow(
+        0 0 12px rgba(139, 92, 246, 0.35)
+      );
+    }
+
+
+    /* ==========================================
+       NAV LINKS
+    ========================================== */
 
     nav ul{
       display: flex;
@@ -56,20 +201,93 @@
       list-style: none;
     }
 
+    nav ul li{
+      opacity: 0;
+
+      animation:
+        fadeUp
+        0.6s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+    }
+
+    nav ul li:nth-child(1){
+      animation-delay: 0.12s;
+    }
+
+    nav ul li:nth-child(2){
+      animation-delay: 0.20s;
+    }
+
+    nav ul li:nth-child(3){
+      animation-delay: 0.28s;
+    }
+
+    nav ul li:nth-child(4){
+      animation-delay: 0.36s;
+    }
+
+    nav ul li:nth-child(5){
+      animation-delay: 0.44s;
+    }
+
     nav ul li a{
       color: white;
       text-decoration: none;
-      transition: 0.3s;
+      position: relative;
+
+      transition:
+        color 0.3s ease,
+        transform 0.3s ease,
+        text-shadow 0.3s ease;
+    }
+
+    /* Animated underline */
+
+    nav ul li a::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+
+      width: 0;
+      height: 2px;
+
+      background: #8b5cf6;
+
+      box-shadow:
+        0 0 10px rgba(139, 92, 246, 0.8);
+
+      transition:
+        width 0.3s
+        cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     nav ul li a:hover{
-      color: #8b5cf6;
+      color: #ffffff;
+      transform: translateY(-2px);
+
+      text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.25);
+    }
+
+    nav ul li a:hover::after{
+      width: 100%;
     }
 
     .active-link{
-      color: #8b5cf6;
+      color: #8b5cf6 !important;
       font-weight: bold;
     }
+
+    .active-link::after{
+      width: 100% !important;
+    }
+
+
+    /* ==========================================
+       HIRE ME BUTTON
+    ========================================== */
 
     button{
       padding: 12px 25px;
@@ -77,6 +295,18 @@
       border-radius: 8px;
       background: #8b5cf6;
       cursor: pointer;
+
+      animation:
+        fadeRight
+        0.8s
+        0.25s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
+
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        filter 0.35s ease;
     }
 
     button a{
@@ -84,6 +314,20 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+    button:hover{
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 8px 25px rgba(139, 92, 246, 0.45);
+
+      filter: brightness(1.08);
+    }
+
+    button:active{
+      transform: translateY(-1px);
+    }
+
 
     /* ==========================================
        ABOUT SECTION
@@ -93,6 +337,16 @@
       width: 100%;
       min-height: 100vh;
       padding: 60px 8%;
+
+      display: flex;
+      align-items: center;
+
+      animation:
+        fadeUp
+        0.9s
+        0.1s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
     }
 
     .about-container{
@@ -100,7 +354,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 80px;
+      width: 100%;
     }
+
 
     /* ==========================================
        IMAGE SECTION
@@ -108,18 +364,47 @@
 
     .about-left{
       flex: 1;
+
       display: flex;
       justify-content: center;
       align-items: flex-start;
+
+      animation:
+        fadeLeft
+        1s
+        0.25s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
     }
 
     .about-img-box{
       width: 380px;
       max-width: 100%;
+
       position: relative;
       border-radius: 20px;
       overflow: hidden;
       flex-shrink: 0;
+
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25);
+
+      animation:
+        softFloat
+        6s
+        ease-in-out
+        infinite;
+
+      transition:
+        box-shadow 0.5s ease,
+        transform 0.5s ease;
+    }
+
+    .about-img-box:hover{
+      box-shadow:
+        0 25px 60px rgba(139, 92, 246, 0.18);
+
+      transform: scale(1.01);
     }
 
     .about-img-box img{
@@ -127,57 +412,209 @@
       height: auto;
       display: block;
       border-radius: 20px;
+
+      transition:
+        transform 0.7s
+        cubic-bezier(0.22, 1, 0.36, 1);
     }
 
+    .about-img-box:hover img{
+      transform: scale(1.035);
+    }
+
+
+    /* ==========================================
+       IMAGE BOTTOM OVERLAY
+    ========================================== */
+
     .about-img-box::after{
- content: "";
-    position: absolute;
-    bottom: -10px; 
-    left: 0;
-    width: 100%;
-    height: 180px; 
+      content: "";
+      position: absolute;
 
-    background: linear-gradient(
-        to top,
-        #050816 0%,
-        rgba(5, 8, 22, 0.8) 30%,
-        rgba(5, 8, 22, 0.4) 60%,
-        transparent 100%
-    );
+      bottom: -10px;
+      left: 0;
 
-    z-index: 2; 
-    pointer-events: none;
-}
+      width: 100%;
+      height: 180px;
+
+      background:
+        linear-gradient(
+          to top,
+          #050816 0%,
+          rgba(5, 8, 22, 0.8) 30%,
+          rgba(5, 8, 22, 0.4) 60%,
+          transparent 100%
+        );
+
+      z-index: 2;
+      pointer-events: none;
+    }
+
+
     /* ==========================================
        TEXT SECTION
     ========================================== */
 
     .about-right{
       flex: 1.3;
+
+      animation:
+        fadeRight
+        1s
+        0.35s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
     }
+
+
+    /* ==========================================
+       STORY TAG
+    ========================================== */
 
     .tag{
       color: #8b5cf6;
       margin-bottom: 15px;
       font-size: 15px;
+
+      opacity: 0;
+
+      animation:
+        fadeUp
+        0.7s
+        0.45s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+
+      position: relative;
+      display: inline-block;
     }
+
+    .tag::after{
+      content: "";
+      position: absolute;
+
+      left: 0;
+      bottom: -7px;
+
+      height: 2px;
+      width: 0;
+
+      background: #8b5cf6;
+
+      animation:
+        underlineReveal
+        0.8s
+        0.9s
+        ease
+        forwards;
+    }
+
+
+    /* ==========================================
+       MAIN HEADING
+    ========================================== */
 
     .about-right h2{
       font-size: 52px;
       margin-bottom: 25px;
       font-weight: 800;
+
+      opacity: 0;
+
+      animation:
+        fadeUp
+        0.8s
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+
+      position: relative;
     }
 
     .about-right h2 span{
       color: #8b5cf6;
+
+      background:
+        linear-gradient(
+          90deg,
+          #8b5cf6,
+          #a78bfa,
+          #8b5cf6
+        );
+
+      background-size: 200% auto;
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation:
+        shimmer
+        3s
+        linear
+        infinite;
     }
+
+    .about-right h2::after{
+      content: "";
+      display: block;
+
+      width: 70px;
+      height: 3px;
+
+      margin-top: 14px;
+
+      border-radius: 50px;
+
+      background: #8b5cf6;
+
+      background-size: 200% auto;
+
+      animation:
+        shimmer
+        3s
+        linear
+        infinite;
+    }
+
+
+    /* ==========================================
+       DESCRIPTION
+    ========================================== */
 
     .about-desc{
       color: #bdbdbd;
       line-height: 1.9;
       margin-bottom: 18px;
       font-size: 16px;
+
+      opacity: 0;
+
+      transition:
+        color 0.3s ease;
     }
+
+    .about-desc:nth-of-type(1){
+      animation:
+        fadeUp
+        0.8s
+        0.72s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+    }
+
+    .about-desc:nth-of-type(2){
+      animation:
+        fadeUp
+        0.8s
+        0.85s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+    }
+
+    .about-desc:hover{
+      color: #d5d5d5;
+    }
+
 
     /* ==========================================
        INFO GRID
@@ -194,6 +631,72 @@
       display: flex;
       flex-direction: column;
       gap: 5px;
+
+      padding: 15px;
+
+      border-radius: 10px;
+
+      background:
+        rgba(13, 19, 38, 0.55);
+
+      border: 1px solid transparent;
+
+      opacity: 0;
+
+      transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .info-item:nth-child(1){
+      animation:
+        fadeUp
+        0.7s
+        1.0s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+    }
+
+    .info-item:nth-child(2){
+      animation:
+        fadeUp
+        0.7s
+        1.10s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+    }
+
+    .info-item:nth-child(3){
+      animation:
+        fadeUp
+        0.7s
+        1.20s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+    }
+
+    .info-item:nth-child(4){
+      animation:
+        fadeUp
+        0.7s
+        1.30s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+    }
+
+    .info-item:hover{
+      transform: translateY(-4px);
+
+      border-color:
+        rgba(139, 92, 246, 0.45);
+
+      background:
+        rgba(139, 92, 246, 0.07);
+
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.20);
     }
 
     .info-title{
@@ -201,12 +704,21 @@
       font-size: 14px;
       font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 0.4px;
     }
 
     .info-value{
       color: white;
       font-size: 16px;
+
+      transition:
+        color 0.3s ease;
     }
+
+    .info-item:hover .info-value{
+      color: #e9e9e9;
+    }
+
 
     /* ==========================================
        TABLET RESPONSIVE
@@ -214,15 +726,19 @@
 
     @media (max-width: 992px){
 
+      .about-page{
+        padding: 70px 6%;
+      }
 
       .about-container{
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        gap: 40px;
+        gap: 45px;
       }
 
-      /* IMAGE ALWAYS TOP */
+      /* IMAGE */
+
       .about-left{
         width: 100%;
         display: flex;
@@ -234,7 +750,8 @@
         width: 280px;
       }
 
-      /* TEXT BELOW IMAGE */
+      /* TEXT */
+
       .about-right{
         width: 100%;
         text-align: center;
@@ -252,40 +769,44 @@
       .info-grid{
         text-align: left;
       }
+
+
+      /* NAV */
+
+      nav{
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      nav ul{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      nav ul li a{
+        font-size: 15px;
+      }
+
+      button{
+        margin-top: 5px;
+      }
     }
 
-    @media (max-width: 992px){
-
-  nav{
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  nav ul{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px;
-  }
-
-  nav ul li a{
-    font-size: 15px;
-  }
-
-  button{
-    margin-top: 5px;
-  }
-}
-    
 
     /* ==========================================
-       MOBILE RESPONSIVE
+       MOBILE
     ========================================== */
 
     @media (max-width: 576px){
 
+      header{
+        padding: 18px 5%;
+      }
+
       .about-page{
-        padding: 40px 20px;
+        padding: 45px 20px;
       }
 
       .about-img-box{
@@ -303,28 +824,82 @@
 
       .info-grid{
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
+      }
+
+      nav ul{
+        gap: 12px;
+      }
+
+      nav ul li a{
+        font-size: 14px;
       }
 
       button{
-        display: none;
+        display: block;
+        padding: 10px 20px;
+      }
+
+      .info-item{
+        padding: 14px;
       }
     }
 
-    @media (max-width: 576px){
 
-  nav ul{
-    gap: 12px;
-  }
+    /* ==========================================
+       VERY SMALL DEVICES
+    ========================================== */
 
-  nav ul li a{
-    font-size: 14px;
-  }
+    @media (max-width: 380px){
 
-  button{
-    display: block;
-  }
-}
+      .logo-text{
+        font-size: 30px;
+      }
+
+      nav ul{
+        gap: 9px;
+      }
+
+      nav ul li a{
+        font-size: 13px;
+      }
+
+      .about-img-box{
+        width: 210px;
+      }
+
+      .about-right h2{
+        font-size: 29px;
+      }
+
+      .about-desc{
+        font-size: 14px;
+      }
+
+      .info-value{
+        font-size: 14px;
+      }
+    }
+
+
+    /* ==========================================
+       ACCESSIBILITY
+    ========================================== */
+
+    @media (prefers-reduced-motion: reduce){
+
+      html{
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after{
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
 
   </style>
 
@@ -332,53 +907,125 @@
 
 <body>
 
+
+  <!-- ==========================================
+       HEADER / NAVBAR
+  ========================================== -->
+
   <header>
+
     <nav>
 
-      <h1 class="logo-text" onclick="window.location.href='index.html'">
-        <span class="letter-g">G</span><span class="letter-m">M</span>
+      <!-- LOGO -->
+
+      <h1
+        class="logo-text"
+        onclick="window.location.href='index.html'"
+      >
+        <span class="letter-g">G</span>
+        <span class="letter-m">M</span>
       </h1>
 
+
+      <!-- NAVIGATION -->
+
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active-link">About</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
+
+        <li>
+          <a href="index.html">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a href="about.html" class="active-link">
+            About
+          </a>
+        </li>
+
+        <li>
+          <a href="skills.html">
+            Skills
+          </a>
+        </li>
+
+        <li>
+          <a href="projects.html">
+            Projects
+          </a>
+        </li>
+
+        <li>
+          <a href="contact.html">
+            Contact
+          </a>
+        </li>
+
       </ul>
 
+
+      <!-- HIRE ME -->
+
       <button>
-        <a href="contact.html">Hire Me</a>
+        <a href="contact.html">
+          Hire Me
+        </a>
       </button>
 
     </nav>
+
   </header>
 
-  <!-- ABOUT SECTION -->
+
+  <!-- ==========================================
+       ABOUT SECTION
+  ========================================== -->
 
   <section class="about-page">
 
     <div class="about-container">
 
-      <!-- IMAGE -->
+
+      <!-- ========================================
+           IMAGE
+      ========================================= -->
 
       <div class="about-left">
 
         <div class="about-img-box">
-          <img src="./main 2.png" alt="Gulam Muhaydin">
+
+          <img
+            src="./main 2.png"
+            alt="Gulam Muhaydin"
+          >
+
         </div>
 
       </div>
 
-      <!-- TEXT -->
+
+      <!-- ========================================
+           ABOUT CONTENT
+      ========================================= -->
 
       <div class="about-right">
 
-        <p class="tag">💡 My Story</p>
+
+        <!-- STORY TAG -->
+
+        <p class="tag">
+          💡 My Story
+        </p>
+
+
+        <!-- HEADING -->
 
         <h2>
           About <span>Me</span>
         </h2>
+
+
+        <!-- DESCRIPTION -->
 
         <p class="about-desc">
           Hello! I'm a passionate Frontend Developer and Python Enthusiast who loves turning complex problems into beautiful, responsive, and user-friendly digital solutions.
@@ -388,27 +1035,73 @@
           I focus on writing clean, efficient, and maintainable code while keeping an eye on modern design trends.
         </p>
 
+
+        <!-- ======================================
+             PERSONAL INFORMATION
+        ======================================= -->
+
         <div class="info-grid">
 
-          <div class="info-item">
-            <span class="info-title">Location:</span>
-            <span class="info-value">Pakistan</span>
-          </div>
+
+          <!-- LOCATION -->
 
           <div class="info-item">
-            <span class="info-title">Email:</span>
-            <span class="info-value">gulammuhaydin29@gmail.com</span>
+
+            <span class="info-title">
+              Location:
+            </span>
+
+            <span class="info-value">
+              Pakistan
+            </span>
+
           </div>
 
-          <div class="info-item">
-            <span class="info-title">Education:</span>
-            <span class="info-value">Computer Science / IT</span>
-          </div>
+
+          <!-- EMAIL -->
 
           <div class="info-item">
-            <span class="info-title">Languages:</span>
-            <span class="info-value">English, Urdu</span>
+
+            <span class="info-title">
+              Email:
+            </span>
+
+            <span class="info-value">
+              gulammuhaydin29@gmail.com
+            </span>
+
           </div>
+
+
+          <!-- EDUCATION -->
+
+          <div class="info-item">
+
+            <span class="info-title">
+              Education:
+            </span>
+
+            <span class="info-value">
+              Computer Science / IT
+            </span>
+
+          </div>
+
+
+          <!-- LANGUAGES -->
+
+          <div class="info-item">
+
+            <span class="info-title">
+              Languages:
+            </span>
+
+            <span class="info-value">
+              English, Urdu
+            </span>
+
+          </div>
+
 
         </div>
 
